@@ -12,11 +12,11 @@ namespace DistanceConverter
                 {
                     if (args[0] == "-tom")
                     {
-                        PrintFeetToMeterList(start, int.Parse(args[2])); //メートルへの変換
+                        PrintFeetToMeterList(start, stop); //メートルへの変換
                     }
                     else if (args[0] == "-tof")
                     {
-                        PrintMeterToFeetList(int.Parse(args[1]), int.Parse(args[2])); //フィートへの変換
+                        PrintMeterToFeetList(start, stop); //フィートへの変換
                     }
                     else
                     {
@@ -28,7 +28,10 @@ namespace DistanceConverter
                     Console.WriteLine("引数エラー");
                 }
             }
-            
+            else
+            {
+                Console.WriteLine("引数エラー");
+            }
         }
 
         private static void PrintMeterToFeetList(int start, int stop)
