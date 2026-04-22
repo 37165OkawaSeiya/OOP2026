@@ -6,13 +6,13 @@ namespace DistanceConverter
     {
         static void Main(string[] args)
         {
-            if (args.Length >= 1 && args[0] == "-tom")
+            if (args.Length >= 3 && args[0] == "-tom")
             {
-                PrintFeetToMeterList(1, 10); //メートルへの変換
+                PrintFeetToMeterList(int.Parse(args[1]), int.Parse(args[2])); //メートルへの変換
             }
-            else if (args.Length >= 1 && args[0] == "-tof")
+            else if (args.Length >= 3 && args[0] == "-tof")
             {
-                PrintMeterToFeetList(1, 10); //フィートへの変換
+                PrintMeterToFeetList(int.Parse(args[1]), int.Parse(args[2])); //フィートへの変換
             }
             else
             {
