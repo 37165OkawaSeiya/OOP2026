@@ -8,17 +8,16 @@ namespace Exercise01 {
                 
                 Console.Write("曲名：");
                 string? title = Console.ReadLine();
-                if(title.Equals("end")) {
+                if(title.Equals("end",StringComparison.OrdinalIgnoreCase)) {//P131
                     break;
                 }
                 Console.Write("アーティスト名：");
                 string? artistname = Console.ReadLine();
 
                 Console.Write("演奏時間(秒)：");
-                string? length = Console.ReadLine();
-                int count = int.Parse(length);
+                int length = int.Parse(Console.ReadLine());
 
-                Song song = new Song(title, artistname, count);
+                Song song = new Song(title, artistname, length);
 
                 songs.Add(song);
                 PrintSongs(songs);
