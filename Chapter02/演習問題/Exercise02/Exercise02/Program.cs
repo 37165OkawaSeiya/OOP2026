@@ -6,7 +6,7 @@ namespace Exercise02 {
         static void Main(string[] args) {
             PrintInchToMeterList(1, 10);
         }
-        //インチからメートルへの対応表を出力
+        //インチからメートルへの対応表を出力 
         public static void PrintInchToMeterList(int start, int end) {
             for (int inch = start; inch <= end; inch++) {
                 double meter = InchConverter.ToMeter(inch);
