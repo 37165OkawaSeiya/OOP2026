@@ -3,7 +3,7 @@ namespace Exercise01 {
     internal class Program {
         static void Main(string[] args) {
             var numbers = new List<int> { 12, 87, 94, 14, 53, 20, 40, 35, 76, 91, 31, 17, 48 };
-
+            #region 各演習の呼び出し (ドライバ)
             // 3.1.1
             Exercise1(numbers);
             Console.WriteLine("-----");
@@ -18,11 +18,12 @@ namespace Exercise01 {
 
             // 3.1.4
             Exercise4(numbers);
+            #endregion
         }
 
         private static void Exercise1(List<int> numbers) {
             Console.WriteLine("---3.1.1---");
-            var exists = numbers.Exists(s => s % 8 == 0 || s % 9 == 0);
+            var exists = numbers.Exists(n => n % 8 == 0 || n % 9 == 0);
             if (exists) {
                 Console.WriteLine("存在しています");
             } else {
@@ -32,26 +33,29 @@ namespace Exercise01 {
 
         private static void Exercise2(List<int> numbers) {
             Console.WriteLine("---3.1.2---");
-            foreach (var s in numbers) {
-                Console.WriteLine(s / 2.0);
-            }
+            numbers.ForEach(n => Console.WriteLine(n / 2.0));
+            //foreach (var n in numbers) {
+            //    Console.WriteLine(n / 2.0);
+            //}
         }
 
         private static void Exercise3(List<int> numbers) {
             Console.WriteLine("---3.1.3---");
-            foreach (var s in numbers.Where(s => 50 <= s)) {
-                Console.WriteLine(s);
-            }
+            numbers.Where(n => 50 <= n).ToList().ForEach(n => Console.WriteLine(n));
+            //foreach (var n in numbers.Where(n => 50 <= n)) {
+            //    Console.WriteLine(n);
+            //}
         }
 
         private static void Exercise4(List<int> numbers) {
             Console.WriteLine("---3.1.4---");
             var query = numbers
-                .Select(s => s * 2)
+                .Select(n => n * 2)
                 .ToList();
-            foreach (var s in query) {
-                Console.WriteLine(s);
-            }
+            query.ForEach(n => Console.WriteLine(n));
+            //foreach (var s in query) {
+            //    Console.WriteLine(s);
+            //}
         }
     }
 }
