@@ -34,7 +34,9 @@ namespace Exercise01 {
         }
 
         private static void Exercise3(List<int> numbers) {
-            
+            foreach (var s in numbers.Where(s => 50 <= s)) {
+                Console.WriteLine(s);
+            }
         }
 
         private static void Exercise4(List<int> numbers) {
