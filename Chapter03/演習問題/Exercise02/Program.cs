@@ -30,8 +30,7 @@ namespace Exercise02 {
             var name = Console.ReadLine();
             var index = cities.FindIndex(s => s.Equals(name));
             Console.WriteLine(index);
-	        
-        }
+	                }
 
         private static void Exercise2_2(List<string> cities) {
             //できたらGitのコメント「問題3.2.2完成」
@@ -55,7 +54,7 @@ namespace Exercise02 {
                 .Where(s => s.Contains("B"))
                 .Select(s => s.Length);
             foreach (var s in query) {
-                Console.WriteLine();
+                Console.WriteLine(s);
             }
         }
     }
