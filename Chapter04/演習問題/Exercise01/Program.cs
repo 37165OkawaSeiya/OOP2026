@@ -51,18 +51,15 @@ namespace Exercise01 {
 
         private static void Exercise2(List<string> langs) {
             Console.WriteLine("---4.1.2---");
-            var query = langs.Where(s => s.Contains('S'));
-            foreach (var lang in query) {
+            var selected = langs.Where(s => s.Contains('S'));
+            foreach (var lang in selected) {
                 Console.WriteLine(lang);
             }
         }
 
         private static void Exercise3(List<string> langs) {
             Console.WriteLine("---4.1.3---");
-            var lang = langs.Find(lang => lang.Length == 10);
-            if (lang is null) {
-                lang = "unknown";
-            }
+            var lang = langs.Find(lang => lang.Length == 10) ?? "unknown";
             Console.WriteLine(lang);
         }
     }
