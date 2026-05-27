@@ -22,9 +22,9 @@ namespace Exercise01 {
 
             //foreach文
             Console.WriteLine("foreach文で出力");
-            foreach(var s in langs) {
-                if (s.Contains('S')) {
-                    Console.WriteLine(s);
+            foreach(var lang in langs) {
+                if (lang.Contains('S')) {
+                    Console.WriteLine(lang);
                 }
             }
             //for文
@@ -52,13 +52,18 @@ namespace Exercise01 {
         private static void Exercise2(List<string> langs) {
             Console.WriteLine("---4.1.2---");
             var query = langs.Where(s => s.Contains('S'));
-            foreach (var s in query) {
-                Console.WriteLine(s);
+            foreach (var lang in query) {
+                Console.WriteLine(lang);
             }
         }
 
         private static void Exercise3(List<string> langs) {
-         
+            Console.WriteLine("---4.1.3---");
+            var lang = langs.Find(lang => lang.Length == 10);
+            if (lang is null) {
+                lang = "unknown";
+            }
+            Console.WriteLine(lang);
         }
     }
 }
