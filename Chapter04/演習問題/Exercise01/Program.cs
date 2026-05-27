@@ -50,7 +50,11 @@ namespace Exercise01 {
         }
 
         private static void Exercise2(List<string> langs) {
-            
+            Console.WriteLine("---4.1.2---");
+            var query = langs.Where(s => s.Contains('S'));
+            foreach (var s in query) {
+                Console.WriteLine(s);
+            }
         }
 
         private static void Exercise3(List<string> langs) {
