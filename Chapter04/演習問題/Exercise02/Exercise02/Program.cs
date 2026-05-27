@@ -14,7 +14,7 @@ namespace Exercise02 {
         private static void Exercise1() {
             //if-else文を使用
             string input = Console.ReadLine();
-            if (int.TryParse(input,out int result)) {
+            if (int.TryParse(input, out int result)) {
                 int count = int.Parse(input);
                 if (count < 0) {
                     Console.WriteLine(count);
@@ -28,12 +28,30 @@ namespace Exercise02 {
             } else {
                 Console.WriteLine("入力に誤りがあります");
             }
-            
         }
 
         private static void Exercise2() {
             //switch文を使用
-
+            string input = Console.ReadLine();
+            if (int.TryParse(input, out int result)) {
+                int count = int.Parse(input);
+                switch (count) {
+                    case < 0:
+                        Console.WriteLine(count);
+                        break;
+                    case < 100:
+                        Console.WriteLine(count * 2);
+                        break;
+                    case < 500:
+                        Console.WriteLine(count * 3);
+                        break;
+                    default:
+                        Console.WriteLine(count);
+                        break;
+                }
+            } else {
+                Console.WriteLine("入力に誤りがあります");
+            }
         }
 
         private static void Exercise3() {
