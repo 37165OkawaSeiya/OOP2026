@@ -20,15 +20,19 @@ namespace Exercise01 {
             Month = month;
         }
 
+        //5.1.3
         public YearMonth AddOneMonth() {
             if (Month == 12) {
                 var add = new YearMonth(Year + 1, 1);
                 return add;
             } else {
-                var add = new YearMonth(Year,Month + 1);
+                var add = new YearMonth(Year, Month + 1);
                 return add;
             }
         }
-        
+
+        //5.1.4
+        public override string ToString() => $"{Year}年{Month}月";
+
     }
 }
