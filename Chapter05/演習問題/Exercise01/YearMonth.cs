@@ -20,11 +20,15 @@ namespace Exercise01 {
             Month = month;
         }
 
-        //public YearMonth AddOneMonth() {
-        //    if ()
-            
-        //    return ;
-        //}
+        public YearMonth AddOneMonth() {
+            if (Month == 12) {
+                var add = new YearMonth(Year + 1, 1);
+                return add;
+            } else {
+                var add = new YearMonth(Year,Month + 1);
+                return add;
+            }
+        }
+        
     }
-
 }
