@@ -37,7 +37,12 @@ namespace Exercise02 {
         }
 
         private static void Exercise4(YearMonth[] ymCollection) {
-            Exercise3(ymCollection);
+            var c21 = Exercise3(ymCollection);
+            if (c21 == null) {
+                Console.WriteLine("21世紀のデータはありません");
+            } else {
+                Console.WriteLine(c21);
+            }
         }
 
         private static void Exercise5(YearMonth[] ymCollection) {
