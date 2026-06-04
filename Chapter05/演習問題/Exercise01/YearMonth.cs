@@ -23,11 +23,9 @@ namespace Exercise01 {
         //5.1.3
         public YearMonth AddOneMonth() {
             if (Month == 12) {
-                var add = new YearMonth(Year + 1, 1);
-                return add;
+                return new YearMonth(Year + 1, 1);
             } else {
-                var add = new YearMonth(Year, Month + 1);
-                return add;
+                return new YearMonth(Year, Month + 1);
             }
         }
 
