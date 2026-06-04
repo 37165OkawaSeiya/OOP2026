@@ -15,6 +15,9 @@ namespace Exercise02 {
             Console.WriteLine("5.2.2");
             Exercise2(ymCollection);
 
+            Console.WriteLine("5.2.3");
+            Console.WriteLine(Exercise3(ymCollection));
+
             Console.WriteLine("5.2.4");
             Exercise4(ymCollection);
 
@@ -27,6 +30,14 @@ namespace Exercise02 {
             foreach(var s in ymCollection) {
                 Console.WriteLine(s);
             }
+        }
+        public static YearMonth? Exercise3(YearMonth[] ymCollection) {
+            foreach (var s in ymCollection) {
+                if (s.Is21Century) {
+                    return s;
+                }
+            }
+            return null;
         }
 
         private static void Exercise4(YearMonth[] ymCollection) {
