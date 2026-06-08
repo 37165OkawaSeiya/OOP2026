@@ -37,12 +37,13 @@ namespace Exercise02 {
         }
 
         private static void Exercise4(YearMonth[] ymCollection) {
-            var c21 = FindFirst21C(ymCollection);
-            if (c21 is null) {
-                Console.WriteLine("21世紀のデータはありません");
-            } else {
-                Console.WriteLine(c21);
-            }
+            Console.WriteLine(FindFirst21C(ymCollection)?.ToString() ?? "21世紀のデータはありません");
+            //var ym = FindFirst21C(ymCollection);
+            //if (ym is null) {
+            //    Console.WriteLine("21世紀のデータはありません");
+            //} else {
+            //    Console.WriteLine(ym);
+            //}
         }
 
         private static void Exercise5(YearMonth[] ymCollection) {
