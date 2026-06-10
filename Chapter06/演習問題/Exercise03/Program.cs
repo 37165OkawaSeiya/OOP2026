@@ -37,7 +37,7 @@ namespace Exercise03 {
         }
 
         private static void Exercise3(string text) {
-            
+
         }
 
         private static void Exercise4(string text) {
@@ -46,11 +46,14 @@ namespace Exercise03 {
         }
 
         private static void Exercise5(string text) {
-            
+            var cnt = text.Split(' ').Where(s => s.Length == 4);
+            foreach (var s in cnt) {
+                Console.WriteLine(s);
+            }
         }
 
         private static void Exercise6(string text) {
-            
+
         }
     }
 }
