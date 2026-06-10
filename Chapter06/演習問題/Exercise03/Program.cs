@@ -41,7 +41,8 @@ namespace Exercise03 {
         }
 
         private static void Exercise4(string text) {
-            
+            var cnt = text.Split(' ').Length;
+            Console.WriteLine(cnt);
         }
 
         private static void Exercise5(string text) {
