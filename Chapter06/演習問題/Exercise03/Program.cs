@@ -55,10 +55,11 @@ namespace Exercise03 {
         //アルファベットの数をカウントして表示する
         private static void Exercise6(string text) {
             var str = text.ToLower().Replace(" ", "");
+            //textの小文字かつ空白を削除したもの
 
             //辞書（ディクショナリを使った集計
-            var alphDicCount = Enumerable.Range('a', 26).
-                ToDictionary(num => ((char)num), num => 0);
+            var alphDicCount = Enumerable.Range('a', 26)//aからzまで連続した値
+                .ToDictionary(num => ((char)num), num => 0);
 
             //var dict = new SortedDictionary<char, int>();
             foreach (var c in str) {
@@ -68,6 +69,8 @@ namespace Exercise03 {
                 Console.WriteLine(word.Key + ":" + word.Value);
             }
 
+            Console.WriteLine();
+
             //配列を用いた集計
             var array = Enumerable.Repeat(0, 26).ToArray();
             foreach (var alph in str) {
@@ -75,6 +78,13 @@ namespace Exercise03 {
             }
             for (char ch = 'a'; ch <= 'z'; ch++) {
                 Console.WriteLine($"{ch}:{array[ch - 'a']}");
+            }
+
+            Console.WriteLine();
+
+            //'a'から順にカウントして集計
+            for (char ch = 'a'; ch <= 'z'; ch++) {
+                Console.WriteLine($"{ch}:{str.Count(s => s == ch)}");
             }
         }
     }
