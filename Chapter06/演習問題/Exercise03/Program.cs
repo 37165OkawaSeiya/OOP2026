@@ -1,5 +1,7 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Intrinsics.X86;
+using System.Text;
 
 namespace Exercise03 {
     internal class Program {
@@ -37,7 +39,21 @@ namespace Exercise03 {
         }
 
         private static void Exercise3(string text) {
+            var words = text.Split(' ');
+            var sb = new StringBuilder(words[0]);
 
+            foreach(var word in words.Skip(1)) {
+                sb.Append(' ');
+                sb.Append(word);
+            }
+
+            //for (int i = 1;i < words.Length; i++) {
+            //    sb.Append(' ');
+            //    sb.Append(words[i]);
+            //}
+
+            //末尾はピリオドで終わる
+            Console.WriteLine(sb + ".");
         }
 
         private static void Exercise4(string text) {
