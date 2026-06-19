@@ -20,27 +20,29 @@ namespace Exercise01 {
             Exercise5(numbers);
             #endregion
         }
-        
+
         private static void Exercise1(int[] numbers) {
             Console.WriteLine(numbers.Max());
         }
 
         private static void Exercise2(int[] numbers) {
-            foreach(var num in numbers.TakeLast(2)) {
+            foreach (var num in numbers.TakeLast(2)) {
                 Console.WriteLine(num);
             }
         }
 
         private static void Exercise3(int[] numbers) {
-            
+            foreach (var num in numbers.Select(n => n.ToString("000"))) {
+                Console.WriteLine(num);
+            }
         }
 
         private static void Exercise4(int[] numbers) {
-         
+
         }
 
         private static void Exercise5(int[] numbers) {
-         
+
         }
     }
 }
