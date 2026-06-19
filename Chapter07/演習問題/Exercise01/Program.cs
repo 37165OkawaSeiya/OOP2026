@@ -38,7 +38,9 @@ namespace Exercise01 {
         }
 
         private static void Exercise4(int[] numbers) {
-
+            foreach (var num in numbers.OrderBy(n => n).Take(3)) {
+                Console.WriteLine(num);
+            }
         }
 
         private static void Exercise5(int[] numbers) {
