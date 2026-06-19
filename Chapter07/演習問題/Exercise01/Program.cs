@@ -38,13 +38,13 @@ namespace Exercise01 {
         }
 
         private static void Exercise4(int[] numbers) {
-            foreach (var num in numbers.OrderBy(n => n).Take(3)) {
+            foreach (var num in numbers.Order().Take(3)) {
                 Console.WriteLine(num);
             }
         }
 
         private static void Exercise5(int[] numbers) {
-            Console.WriteLine(numbers.Distinct().Count(n => 10 <= n));
+            Console.WriteLine(numbers.Distinct().Count(n => 10 < n));
         }
     }
 }
