@@ -4,19 +4,19 @@ namespace Exercise01 {
         static void Main(string[] args) {
             int[] numbers = [5, 10, 17, 9, 3, 21, 10, 40, 21, 3, 35];
             #region
-            Console.WriteLine("7.1.1");
+            Console.WriteLine("\n7.1.1");
             Exercise1(numbers);
 
-            Console.WriteLine("7.1.2");
+            Console.WriteLine("\n7.1.2");
             Exercise2(numbers);
 
-            Console.WriteLine("7.1.3");
+            Console.WriteLine("\n7.1.3");
             Exercise3(numbers);
 
-            Console.WriteLine("7.1.4");
+            Console.WriteLine("\n7.1.4");
             Exercise4(numbers);
 
-            Console.WriteLine("7.1.5");
+            Console.WriteLine("\n7.1.5");
             Exercise5(numbers);
             #endregion
         }
@@ -26,7 +26,9 @@ namespace Exercise01 {
         }
 
         private static void Exercise2(int[] numbers) {
-
+            foreach(var num in numbers.TakeLast(2)) {
+                Console.WriteLine(num);
+            }
         }
 
         private static void Exercise3(int[] numbers) {
