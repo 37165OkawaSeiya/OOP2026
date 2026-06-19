@@ -37,11 +37,14 @@ namespace Exercise02 {
         }
 
         private static void Exercise1(List<Book> books) {
-            foreach (var book in books)
+            var items = books.FindAll(s => s.Title.Equals("ワンダフル・C#ライフ"));
+            foreach (var book in items) {
+                Console.WriteLine($"{book.Price} {book.Pages}");
+            }
         }
 
         private static void Exercise2(List<Book> books) {
-            
+            Console.WriteLine(books.Select(s => s.Title.Contains("C#")).Count());
         }
 
         private static void Exercise3(List<Book> books) {
