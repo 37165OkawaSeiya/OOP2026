@@ -26,14 +26,14 @@
         //メソッドの概要：
         public IDictionary<string, int> GetPerStudentScore() {
             var dict = new Dictionary<string, int>();
-            foreach (var student in _score) {
-                //すでに生徒名が辞書のキーに登録されているか
-                if (dict.ContainsKey(student.Name))
+            foreach (var score in _score) {
+                //すでに科目名が辞書のキーに登録されているか
+                if (dict.ContainsKey(score.Subject))
                     //登録されている場合
-                    dict[student.Name] += student.Score;//点数足し込み
+                    dict[score.Subject] += score.Score;//点数足し込み
                 else
                     //未登録の場合
-                    dict[student.Name] = student.Score;//新規に点数を登録
+                    dict[score.Subject] = score.Score;//新規に点数を登録
             }
             return dict;
         }
