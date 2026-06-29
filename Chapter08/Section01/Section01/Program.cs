@@ -28,10 +28,10 @@ namespace Section01 {
                     if (Console.ReadLine() == "N") continue;
                 }
                 prefOfficeDict[pref] = prefCaptaLocation;
-                
+                Console.WriteLine();
             }
-
-            while (true) {
+            Boolean endFlag = false; //終了フラグ（メニューの無限ループを抜ける用）
+            while (!endFlag) {
                 switch (menuDisp()) {
                     case 1://一覧表示
                         allDisp();
@@ -39,8 +39,9 @@ namespace Section01 {
                     case 2://検索
                         searchPrefCaptalLocation();
                         break;
-                    case 9://終了
-                        return;
+                    default://終了
+                        endFlag = true;
+                        break;
                 }
             }
         }
