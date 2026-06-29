@@ -20,40 +20,56 @@ namespace Section01 {
                 //②県庁所在地の入力
                 Console.Write("県庁所在地:");
                 prefCaptaLocation = Console.ReadLine();
-                Console.WriteLine();
 
                 //③県庁所在地登録処理
                 if (prefOfficeDict.ContainsKey(pref)) {
-                    //上書きしますか
+                    Console.WriteLine("上書きしますか?(Y/N)");
+                    if (Console.Read() == 'Y') {
+                        prefOfficeDict[pref] = prefCaptaLocation;
+                    }
                 } else {
-
+                    prefOfficeDict[pref] = prefCaptaLocation;
                 }
-                prefOfficeDict[pref] = prefCaptaLocation;
-
             }
 
             while (true) {
-                Console.WriteLine("メニュー");
-                Console.WriteLine("1:一覧表示");
-                Console.WriteLine("2:検索");
-                Console.WriteLine("9:終了");
-                var num = Console.ReadLine();
-                switch (num) {
-                    case "1"://一覧表示
-                        foreach (var prefs in prefOfficeDict) {
-                            Console.WriteLine($"{prefs.Key}の県庁所在地は{prefs.Value}です");
-                        }
+                switch (menuDisp()) {
+                    case 1://一覧表示
+                        allDisp();
                         break;
-                    case "2"://検索
-                        Console.Write("都道府県：");
-                        var RP = Console.ReadLine();
-                        Console.WriteLine($"県庁所在地：{prefOfficeDict[RP]}");
+                    case 2://検索
+                        searchPrefCaptalLocation();
                         break;
-                    case "9"://終了
+                    case 9://終了
                         return;
                 }
             }
         }
+        //メニュー表示
+        private static int menuDisp() {
+            Console.WriteLine("\n**** メニュー ****");
+            Console.WriteLine("1:一覧表示");
+            Console.WriteLine("2:検索");
+            Console.WriteLine("9:終了");
+            Console.Write(">");
+            int num = int.Parse(Console.ReadLine());
+            //メニュー番号を入力させて呼び出し元へ返却
 
+            return num;
+        }
+
+        //一覧表示処理
+        private static void allDisp() {
+            foreach (var prefs in prefOfficeDict) {
+                Console.WriteLine($"{prefs.Key}の県庁所在地は{prefs.Value}です。");
+            }
+        }
+
+        //検索処理
+        private static void searchPrefCaptalLocation() {
+            Console.Write("都道府県：");
+            var RP = Console.ReadLine();
+            Console.WriteLine($"{RP}の県庁所在地は{prefOfficeDict[RP]}です。");
+        }
     }
 }
