@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Section01 {
     internal class Program {
@@ -24,12 +25,10 @@ namespace Section01 {
                 //③県庁所在地登録処理
                 if (prefOfficeDict.ContainsKey(pref)) {
                     Console.WriteLine("上書きしますか?(Y/N)");
-                    if (Console.Read() == 'Y') {
-                        prefOfficeDict[pref] = prefCaptaLocation;
-                    }
-                } else {
-                    prefOfficeDict[pref] = prefCaptaLocation;
+                    if (Console.ReadLine() == "N") continue;
                 }
+                prefOfficeDict[pref] = prefCaptaLocation;
+                
             }
 
             while (true) {
@@ -52,10 +51,8 @@ namespace Section01 {
             Console.WriteLine("2:検索");
             Console.WriteLine("9:終了");
             Console.Write(">");
-            int num = int.Parse(Console.ReadLine());
             //メニュー番号を入力させて呼び出し元へ返却
-
-            return num;
+            return int.Parse(Console.ReadLine()); ;
         }
 
         //一覧表示処理
@@ -68,8 +65,11 @@ namespace Section01 {
         //検索処理
         private static void searchPrefCaptalLocation() {
             Console.Write("都道府県：");
-            var RP = Console.ReadLine();
-            Console.WriteLine($"{RP}の県庁所在地は{prefOfficeDict[RP]}です。");
+            var searchPref = Console.ReadLine();
+            if (searchPref is null) return;
+            //検索した結果を表示
+            if(prefOfficeDict.ContainsKey(searchPref))
+            Console.WriteLine($"{searchPref}の県庁所在地は{prefOfficeDict[searchPref]}です。");
         }
     }
 }
