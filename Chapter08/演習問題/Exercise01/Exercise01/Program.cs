@@ -1,4 +1,6 @@
 ﻿
+using static System.Net.Mime.MediaTypeNames;
+
 namespace Exercise01 {
     internal class Program {
         static void Main(string[] args) {
@@ -9,8 +11,7 @@ namespace Exercise01 {
             Exercise02(text);
 
         }
-
-        private static void Exercise02(string text) {
+        private static void Exercise01(string text) {
             var dict = new Dictionary<char, int>();
             foreach (var ch in text.ToUpper()) {
                 if ('A' <= ch && ch <= 'Z') {
@@ -26,8 +27,22 @@ namespace Exercise01 {
             }
         }
 
-        private static void Exercise01(object text1) {
-
+        private static void Exercise02(string text) {
+            var dict = new SortedDictionary<char, int>();
+            foreach (var ch in text.ToUpper()) {
+                if ('A' <= ch && ch <= 'Z') {
+                    if (dict.ContainsKey(ch)) {
+                        dict[ch]++;
+                    } else {
+                        dict[ch] = 1;
+                    }
+                }
+            }
+            foreach (var alphabet in dict) {
+                Console.WriteLine($"{alphabet.Key}:{alphabet.Value}");
+            }
         }
+
+        
     }
 }

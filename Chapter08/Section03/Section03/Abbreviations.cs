@@ -3,7 +3,7 @@ namespace Section03;
 // 略語と対応する日本語を管理するクラス
 public class Abbreviations {
     private readonly Dictionary<string, string> _dict = new();
-
+    
     // コンストラクター
     public Abbreviations() {
         var lines = File.ReadAllLines("./Abbreviations.txt");
@@ -11,6 +11,8 @@ public class Abbreviations {
             .Select(line => line.Split('='))
             .ToDictionary(x => x[0], x => x[1]);
     }
+
+    
 
     // 要素を追加
     public void Add(string abbr, string japanese) =>
@@ -32,4 +34,6 @@ public class Abbreviations {
             }
         }
     }
+
+    
 }
