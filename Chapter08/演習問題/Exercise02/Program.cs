@@ -18,7 +18,9 @@
             Console.WriteLine();    //改行
 
             // 8.2.3 (Removeの呼び出し例)
-            abbrs.Remove("追加後の件数：" + Console.ReadLine());
+            if (!abbrs.Remove("NPT")) {
+                Console.WriteLine("削除できません");
+            }
 
             Console.WriteLine(abbrs.Count);
 
@@ -35,7 +37,7 @@
             // 新たなGetAllメソッドを追加済みなので、使用してLINQで処理を行う
             
             foreach (var item in abbrs.GetAll().Where(x => x.Key.Length == 3)) {
-                Console.WriteLine($"{item.Key}={item.Value}");
+                Console.WriteLine("{0},{1}",item.Key,item.Value);
             }
         }
     }
