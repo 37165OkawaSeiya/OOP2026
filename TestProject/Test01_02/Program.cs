@@ -60,20 +60,22 @@
 
         //問題１　合計値を表示（式形式で記述せよ）
         //　　　　出力結果【618】
-        private static void Exercise01(int[] numbers) => Console.WriteLine(numbers.Sum());
+        private static void Exercise01(int[] numbers) => 
+            Console.WriteLine(numbers.Sum());
 
 
 
         //問題２　偶数の最大値を表示（式形式で記述せよ）
         //　　　　出力結果【94】
-        private static void Exercise02(int[] numbers) => Console.WriteLine(numbers.Where(n => n % 2 == 0).Max());
+        private static void Exercise02(int[] numbers) => 
+            Console.WriteLine(numbers.Where(n => n % 2 == 0).Max());
 
 
 
         //問題３　昇順に並べて表示（遅延実行とする）
         //　　　　出力結果【12 14 17 20 31 35 40 48 53 76 87 91 94】
         private static void Exercise03(int[] numbers) {
-            foreach (var num in numbers.Order()) {
+            foreach (var num in numbers.OrderBy(n => n)) {
                 Console.Write(num + " ");
             }
         }
@@ -88,15 +90,15 @@
 
         //問題５　Countメソッドを使い、小文字の'n'が含まれている都市名がいくつあるかカウントして結果を表示
         //　　　　出力結果【5】
-        private static void Exercise05(List<string> cities) {
+        private static void Exercise05(List<string> cities) =>
             Console.WriteLine(cities.Count(b => b.Contains('n')));
-        }
+        
 
         //問題６　全都市数
         //　　　　出力結果【8】
-        private static void Exercise06(List<string> cities) {
+        private static void Exercise06(List<string> cities) =>
             Console.WriteLine(cities.Count());
-        }
+        
 
         //問題７　各都市名をアルファベット順（昇順）に出力
         //　　　　出力結果
@@ -126,7 +128,7 @@
         //　　　　  Hong Kong : 9文字】
         private static void Exercise08(List<string> cities) {
             foreach (var citie in cities) {
-                Console.WriteLine($"{citie}:{citie.Length}文字");
+                Console.WriteLine($"{citie} : {citie.Length}文字");
             }
         }
 
@@ -141,10 +143,9 @@
         //          New Delhi : 9文字
         //          Hong Kong : 9文字】
         private static void Exercise09(List<string> cities) {
-            //var ord = cities.Select()
-            //foreach (var citie in cities.Order()) {
-            //    Console.WriteLine($"{citie}:{citie.Length}文字");
-            //}
+            foreach (var citie in cities.OrderBy(s => s.Length)) {
+                Console.WriteLine($"{citie} : {citie.Length}文字");
+            }
         }
 
         //問題１０　６文字の都市名を表示
@@ -152,8 +153,9 @@
         //        【London
         //          Berlin】
         private static void Exercise10(List<string> cities) {
-
-
+            foreach (var citie in cities.Where(s => s.Length == 6)) {
+                Console.WriteLine(citie);
+            }
         }
     }
 }

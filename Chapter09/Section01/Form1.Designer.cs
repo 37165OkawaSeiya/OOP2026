@@ -1,0 +1,82 @@
+﻿namespace Section01 {
+    partial class Form1 {
+        /// <summary>
+        ///  Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        ///  Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing) {
+            if (disposing && (components != null)) {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent() {
+            Button = new Button();
+            label1 = new Label();
+            tbOutput = new TextBox();
+            SuspendLayout();
+            // 
+            // Button
+            // 
+            Button.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            Button.Location = new Point(81, 146);
+            Button.Name = "Button";
+            Button.Size = new Size(138, 96);
+            Button.TabIndex = 0;
+            Button.Text = "ボタン";
+            Button.UseVisualStyleBackColor = true;
+            Button.Click += Button_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Yu Gothic UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            label1.Location = new Point(91, 65);
+            label1.Name = "label1";
+            label1.Size = new Size(141, 37);
+            label1.TabIndex = 1;
+            label1.Text = "Chapter09";
+            label1.Click += label1_Click;
+            // 
+            // tbOutput
+            // 
+            tbOutput.Location = new Point(91, 325);
+            tbOutput.Name = "tbOutput";
+            tbOutput.Size = new Size(226, 23);
+            tbOutput.TabIndex = 2;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(tbOutput);
+            Controls.Add(label1);
+            Controls.Add(Button);
+            Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            Name = "Form1";
+            Text = "Form1";
+            Load += Form1_Load;
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private Button Button;
+        private Label label1;
+        private TextBox tbOutput;
+    }
+}
