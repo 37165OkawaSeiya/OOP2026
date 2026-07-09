@@ -26,9 +26,9 @@
             btButton1 = new Button();
             btButton2 = new Button();
             btButton3 = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            tbOut1 = new TextBox();
+            tbOut2 = new TextBox();
+            tbOut3 = new TextBox();
             SuspendLayout();
             // 
             // btButton1
@@ -39,6 +39,7 @@
             btButton1.TabIndex = 0;
             btButton1.Text = "①";
             btButton1.UseVisualStyleBackColor = true;
+            btButton1.Click += btButton1_Click;
             // 
             // btButton2
             // 
@@ -48,6 +49,7 @@
             btButton2.TabIndex = 0;
             btButton2.Text = "②";
             btButton2.UseVisualStyleBackColor = true;
+            btButton2.Click += btButton2_Click;
             // 
             // btButton3
             // 
@@ -57,39 +59,43 @@
             btButton3.TabIndex = 0;
             btButton3.Text = "③";
             btButton3.UseVisualStyleBackColor = true;
+            btButton3.Click += btButton3_Click;
             // 
-            // textBox1
+            // tbOut1
             // 
-            textBox1.Location = new Point(258, 49);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(516, 56);
-            textBox1.TabIndex = 1;
+            tbOut1.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            tbOut1.Location = new Point(258, 49);
+            tbOut1.Multiline = true;
+            tbOut1.Name = "tbOut1";
+            tbOut1.Size = new Size(516, 56);
+            tbOut1.TabIndex = 1;
             // 
-            // textBox2
+            // tbOut2
             // 
-            textBox2.Location = new Point(258, 153);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(516, 56);
-            textBox2.TabIndex = 1;
+            tbOut2.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            tbOut2.Location = new Point(258, 153);
+            tbOut2.Multiline = true;
+            tbOut2.Name = "tbOut2";
+            tbOut2.Size = new Size(516, 56);
+            tbOut2.TabIndex = 1;
             // 
-            // textBox3
+            // tbOut3
             // 
-            textBox3.Location = new Point(258, 256);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(516, 56);
-            textBox3.TabIndex = 1;
+            tbOut3.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            tbOut3.Location = new Point(258, 256);
+            tbOut3.Multiline = true;
+            tbOut3.Name = "tbOut3";
+            tbOut3.Size = new Size(516, 56);
+            tbOut3.TabIndex = 1;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 367);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(tbOut3);
+            Controls.Add(tbOut2);
+            Controls.Add(tbOut1);
             Controls.Add(btButton3);
             Controls.Add(btButton2);
             Controls.Add(btButton1);
@@ -104,8 +110,8 @@
         private Button btButton1;
         private Button btButton2;
         private Button btButton3;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox tbOut1;
+        private TextBox tbOut2;
+        private TextBox tbOut3;
     }
 }
