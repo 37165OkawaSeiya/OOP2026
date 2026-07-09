@@ -23,33 +23,39 @@ namespace Section01 {
             var culture = new CultureInfo("ja-JP");
             culture.DateTimeFormat.Calendar = new JapaneseCalendar();
             var dayOfWeek = culture.DateTimeFormat.GetShortestDayName(birth.DayOfWeek);
+
             tbOut3.Text = $"¶‚Ü‚ê‚½{birth.Month}Œ{birth.Day}“ú‚Í‘æ{NthWeek(birth)}T‚Ì{dayOfWeek}—j“ú‚Å‚·";
 
-            var birthday = new DateTime(today.Year, birth.Month, birth.Day);
-            var next_birthday = new DateTime(today.Year+1, birth.Month, birth.Day);
 
-            if (birth.Month.Equals(today.Month) && birth.Day.Equals(today.Day)) {
+            //¡”N‚Ì’a¶“ú‚ğì¬‚·‚é
+            DateTime thisYearBirthday = new DateTime(today.Year, birth.Month, birth.Day);
+            //‚·‚Å‚É’a¶“ú‚ª‰ß‚¬‚½‚©
+            if (thisYearBirthday < today) {
+                //—ˆ”N‚Ì’a¶“ú‚ğì¬‚·‚é
+                thisYearBirthday = thisYearBirthday.AddYears(1);
+            }
+
+            var span = thisYearBirthday - today;
+
+            if (span.Days == 0) {
                 tbOut4.Text = "’a¶“ú‚Í¡“ú‚Å‚·";
-            } else if (today > birthday){
-                tbOut4.Text = $"{(next_birthday.Date - today.Date).Days}";
             } else {
-                tbOut4.Text = $"{(birthday.Date - today.Date).Days}";
+                tbOut4.Text = $"’a¶“ú‚Ü‚Å‚ ‚Æ{span.Days}“ú‚Å‚·";
             }
-        }
 
-        //”N—î‚ğ‹‚ß‚éƒƒ\ƒbƒh
-        static int GetAge(DateTime birthday, DateTime targetDay) {
-            var age = targetDay.Year - birthday.Year;
-            if (targetDay < birthday.AddYears(age)) {
-                age--;
+            //”N—î‚ğ‹‚ß‚éƒƒ\ƒbƒh
+            static int GetAge(DateTime birthday, DateTime targetDay) {
+                var age = targetDay.Year - birthday.Year;
+                if (targetDay < birthday.AddYears(age)) {
+                    age--;
+                }
+                return age;
             }
-            return age;
-        }
 
-        static int NthWeek(DateTime date) {
-            var firstDay = new DateTime(date.Year, date.Month, 1);
-            var firstDayOfWeek = (int)(firstDay.DayOfWeek);
-            return (date.Day + firstDayOfWeek - 1) / 7 + 1;
+            static int NthWeek(DateTime date) {
+                var firstDay = new DateTime(date.Year, date.Month, 1);
+                var firstDayOfWeek = (int)(firstDay.DayOfWeek);
+                return (date.Day + firstDayOfWeek - 1) / 7 + 1;
+            }
         }
     }
-}
