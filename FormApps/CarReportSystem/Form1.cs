@@ -33,6 +33,9 @@ namespace CarReportSystem {
             };
             listCarReports.Add(carReport);
 
+            SetCbAuthor(cbAuthor.Text);
+            SetCbCarName(cbCarName.Text);
+
             ImputItemsAllClear();
         }
 
@@ -71,13 +74,61 @@ namespace CarReportSystem {
         }
 
         private void dgvRecords_Click(object sender, EventArgs e) {
+            if (dgvRecords.CurrentRow is null) return;
+
             dtpDate.Value = (DateTime)dgvRecords.CurrentRow.Cells["Date"].Value;
             cbAuthor.Text = (String)dgvRecords.CurrentRow.Cells["Author"].Value;
-
+            SetRadioButtonMaker((MakerGroup)dgvRecords.CurrentRow.Cells["Maker"].Value);
             cbCarName.Text = (String)dgvRecords.CurrentRow.Cells["CarName"].Value;
             tbReport.Text = (String)dgvRecords.CurrentRow.Cells["Report"].Value;
-            pbPicture.Image = (Image)dgvRecords.CurrentRow.Cells["Image"].Value;
+            pbPicture.Image = (Image)dgvRecords.CurrentRow.Cells["Picture"].Value;
         }
 
+        private void SetRadioButtonMaker(MakerGroup targetMaker) {
+            switch (targetMaker) {
+                case MakerGroup.トヨタ:
+                    rbToyota.Checked = true;
+                    break;
+                case MakerGroup.日産:
+                    rbNissan.Checked = true;
+                    break;
+                case MakerGroup.ホンダ:
+                    rbHonda.Checked = true;
+                    break;
+                case MakerGroup.スバル:
+                    rbSubaru.Checked = true;
+                    break;
+                case MakerGroup.輸入車:
+                    rbImport.Checked = true;
+                    break;
+                default:
+                    rbOther.Checked = true;
+                    break;
+            }
+        }
+
+        //記録者の入力履歴をコンボボックスへ登録（重複なし）
+        private void SetCbAuthor(string author) {
+            if (!cbAuthor.Items.Contains(author))
+                cbAuthor.Items.Add(author);
+        }
+
+        //車名の入力履歴をコンボボックスへ登録（重複なし）
+        private void SetCbCarName(string carname) {
+            if (!cbCarName.Items.Contains(carname))
+                cbCarName.Items.Add(carname);
+        }
+
+        private void Form1_Load(object sender, EventArgs e) {
+
+        }
+
+        private void biDeletePicture_Click(object sender, EventArgs e) {
+            pbPicture.Image = null;
+        }
+
+        private void btDeleteRecord_Click(object sender, EventArgs e) {
+            listCarReports.RemoveAt(dgvRecords.CurrentRow.Index);
+        }
     }
 }

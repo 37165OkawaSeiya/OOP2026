@@ -300,6 +300,8 @@
             // 
             // dgvRecords
             // 
+            dgvRecords.AllowUserToAddRows = false;
+            dgvRecords.AllowUserToDeleteRows = false;
             dgvRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvRecords.Location = new Point(114, 433);
             dgvRecords.Name = "dgvRecords";
@@ -359,6 +361,7 @@
             biDeletePicture.TabIndex = 6;
             biDeletePicture.Text = "削除";
             biDeletePicture.UseVisualStyleBackColor = true;
+            biDeletePicture.Click += biDeletePicture_Click;
             // 
             // btAddRecord
             // 
@@ -402,6 +405,7 @@
             btDeleteRecord.TabIndex = 6;
             btDeleteRecord.Text = "削除";
             btDeleteRecord.UseVisualStyleBackColor = false;
+            btDeleteRecord.Click += btDeleteRecord_Click;
             // 
             // label7
             // 
@@ -475,6 +479,7 @@
             tsslb.Location = new Point(0, 667);
             tsslb.Name = "tsslb";
             tsslb.Size = new Size(912, 22);
+            tsslb.SizingGrip = false;
             tsslb.TabIndex = 9;
             tsslb.Text = "statusStrip1";
             // 
@@ -517,9 +522,12 @@
             Controls.Add(label1);
             Controls.Add(dtpDate);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
+            MaximizeBox = false;
             Name = "Form1";
             Text = "試乗レポート管理システム";
+            Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
