@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 using System.Xml.Serialization;
 using static CarReportSystem.CarReport;
@@ -23,13 +24,13 @@ namespace CarReportSystem {
             //P286以降を参考にする(ファイル名：setting.xml)
 
             //ファイルが存在するか？
-            if(File.Exists("settings.xml")) {
+            if (File.Exists("setting.xml")) {
                 try {
                     using (var reader = XmlReader.Create("setting.xml")) {
                         var serializer = new XmlSerializer(typeof(Settings));
-                        var settings = serializer.Deserialize(reader) as Settings;
+                        settings = serializer.Deserialize(reader) as Settings;
                         //背景色設定
-                        BackColor = Color.FromArgb(settings.MainForBackColor);
+                        BackColor = Color.FromArgb(settings.MainFormBackColor);
                     }
                 }
                 catch (Exception ex) {
@@ -215,18 +216,77 @@ namespace CarReportSystem {
             if (cdColor.ShowDialog() == DialogResult.OK) {
                 BackColor = cdColor.Color;
                 //変更された色の情報を保持
-                settings.MainForBackColor = cdColor.Color.ToArgb();
+                settings.MainFormBackColor = cdColor.Color.ToArgb();
             }
         }
 
         //フォームが閉じたら呼ばれるイベントハンドラ
-        private void Form1_FormClosed(object sender, FormClosingEventArgs e) {
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
             //設定ファイルへ色情報を保存する処理（シリアル化）
             //P284以降を参考にする（ファイル名：setting.xml）
 
             using (var writer = XmlWriter.Create("setting.xml")) {
                 var serializer = new XmlSerializer(settings.GetType());
                 serializer.Serialize(writer, settings);
+            }
+        }
+
+        private void 保存ToolStripMenuItem_Click(object sender, EventArgs e) {
+            reportSaveFile();
+        }
+
+        private void 開くToolStripMenuItem_Click(object sender, EventArgs e) {
+            reportOpenFile();
+        }
+
+        //ファイルセーブ処理
+        private void reportSaveFile() {
+            if (sfdReportFileSave.ShowDialog() == DialogResult.OK) {
+                try {
+                    //バイナリ形式でシリアル化
+#pragma warning disable SYSLIB0011
+                    var bf = new BinaryFormatter();
+#pragma warning restore SYSLIB0011
+                    using (FileStream fs = File.Open(sfdReportFileSave.FileName, FileMode.Create))
+                        bf.Serialize(fs, listCarReports);
+                }
+                catch (Exception ex) {
+                    tsslbMessage.Text = "ファイル書き出しエラー";
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        //ファイルオープン処理
+        private void reportOpenFile() {
+            if (ofdReportFileOpen.ShowDialog() == DialogResult.OK) {
+                try {
+                    //逆シリアル化でバイナリ形式を取り込む
+#pragma warning disable SYSLIB0011
+                    var bf = new BinaryFormatter();
+#pragma warning restore SYSLIB0011
+                    using (FileStream fs = File.Open(
+                        ofdReportFileOpen.FileName,
+                        FileMode.Open,
+                        FileAccess.Read
+                        )) {
+                        listCarReports = (BindingList<CarReport>)bf.Deserialize(fs);
+                        dgvRecords.DataSource = listCarReports;
+                    }
+                    //コンボボックスの履歴をすべて消す
+                    cbAuthor.Items.Clear();
+                    cbCarName.Items.Clear();
+
+                    //コンボボックスの履歴を再登録
+                    foreach (var report in listCarReports) {
+                        SetCbAuthor(report.Author);
+                        SetCbCarName(report.CarName);
+                    }
+                }
+                catch (Exception ex) {
+                    tsslbMessage.Text = "ファイル書き出しエラー";
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
     }

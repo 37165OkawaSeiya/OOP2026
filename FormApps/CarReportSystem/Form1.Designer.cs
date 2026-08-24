@@ -68,6 +68,8 @@
             tsslbMessage = new ToolStripStatusLabel();
             ofdPicFileOpen = new OpenFileDialog();
             cdColor = new ColorDialog();
+            sfdReportFileSave = new SaveFileDialog();
+            ofdReportFileOpen = new OpenFileDialog();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRecords).BeginInit();
@@ -438,36 +440,38 @@
             // 開くToolStripMenuItem
             // 
             開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-            開くToolStripMenuItem.Size = new Size(119, 22);
+            開くToolStripMenuItem.Size = new Size(180, 22);
             開くToolStripMenuItem.Text = "開く…";
+            開くToolStripMenuItem.Click += 開くToolStripMenuItem_Click;
             // 
             // 保存ToolStripMenuItem
             // 
             保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
-            保存ToolStripMenuItem.Size = new Size(119, 22);
+            保存ToolStripMenuItem.Size = new Size(180, 22);
             保存ToolStripMenuItem.Text = "保存…";
+            保存ToolStripMenuItem.Click += 保存ToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(116, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // 色設定ToolStripMenuItem
             // 
             色設定ToolStripMenuItem.Name = "色設定ToolStripMenuItem";
-            色設定ToolStripMenuItem.Size = new Size(119, 22);
+            色設定ToolStripMenuItem.Size = new Size(180, 22);
             色設定ToolStripMenuItem.Text = "色設定…";
             色設定ToolStripMenuItem.Click += 色設定ToolStripMenuItem_Click_1;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(116, 6);
+            toolStripSeparator2.Size = new Size(177, 6);
             // 
             // 終了XToolStripMenuItem
             // 
             終了XToolStripMenuItem.Name = "終了XToolStripMenuItem";
-            終了XToolStripMenuItem.Size = new Size(119, 22);
+            終了XToolStripMenuItem.Size = new Size(180, 22);
             終了XToolStripMenuItem.Text = "終了(&X)";
             終了XToolStripMenuItem.Click += 終了XToolStripMenuItem_Click_1;
             // 
@@ -496,6 +500,10 @@
             // ofdPicFileOpen
             // 
             ofdPicFileOpen.FileName = "openFileDialog1";
+            // 
+            // ofdReportFileOpen
+            // 
+            ofdReportFileOpen.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -531,7 +539,7 @@
             MaximizeBox = false;
             Name = "Form1";
             Text = "試乗レポート管理システム";
-            FormClosing += Form1_FormClosed;
+            FormClosed += Form1_FormClosed;
             Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -594,5 +602,7 @@
         private ToolStripStatusLabel tsslbMessage;
         private OpenFileDialog ofdPicFileOpen;
         private ColorDialog cdColor;
+        private SaveFileDialog sfdReportFileSave;
+        private OpenFileDialog ofdReportFileOpen;
     }
 }
