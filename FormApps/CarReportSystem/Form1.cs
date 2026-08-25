@@ -28,9 +28,12 @@ namespace CarReportSystem {
                 try {
                     using (var reader = XmlReader.Create("setting.xml")) {
                         var serializer = new XmlSerializer(typeof(Settings));
-                        settings = serializer.Deserialize(reader) as Settings;
-                        //背景色設定
-                        BackColor = Color.FromArgb(settings.MainFormBackColor);
+
+                        if(serializer.Deserialize(reader) is Settings loadedSettings) {
+                            settings = loadedSettings;
+                            //背景色設定
+                            BackColor = Color.FromArgb(settings.MainFormBackColor);
+                        }
                     }
                 }
                 catch (Exception ex) {
@@ -161,7 +164,8 @@ namespace CarReportSystem {
 
         //データグリッドビューを更新したら呼ぶメソッド
         private void InputItemUpdate() {
-            if (!dgvRecords.CurrentRow.Selected)
+            if (dgvRecords.CurrentRow is null 
+                    || !dgvRecords.CurrentRow.Selected)
                 InputItemsAllClear();
         }
 
