@@ -1,5 +1,10 @@
-﻿namespace CarReportSystem {
+﻿using System.Xml;
+using System.Xml.Serialization;
+
+namespace CarReportSystem {
     public sealed class Settings {
+
+        private const string FileName = "setting.xml";
 
         //唯一のSettingオブジェクト
         private static readonly Settings _instance = new Settings();
@@ -13,8 +18,26 @@
             get { return _instance; }
         }
 
-
         //外部からnewできないようにする
         private Settings() { }
+
+        public void Load() {
+
+        }
+
+        public void Save() {
+            var data = new SettingsData {
+                MainFormBackColor = MainFormBackColor
+            };
+            using var writer = XmlWriter.Create(FileName);
+            var seralizer = new XmlSerializer(typeof(SettingsData));
+            seralizer.Serialize(writer, data);
+
+        }
+    }
+
+    //XML保存用のクラス
+    public class SettingsData {
+        public int MainFormBackColor { get; set; }
     }
 }
