@@ -152,11 +152,15 @@ namespace CarReportSystem {
         }
 
         private void btDeleteRecord_Click(object sender, EventArgs e) {
-            if (dgvRecords.CurrentRow is null
-                || !dgvRecords.CurrentRow.Selected) return;
+            if ((dgvRecords.CurrentRow) is null
+                || (!dgvRecords.CurrentRow.Selected)) return;
 
             //選択されているインデックスを取得
             //削除したいインデックスを指定してリストから削除
+            if (dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport) {
+                tsslbMessage.Text = "削除するレポートを選択してください";
+                return;
+            }
             listCarReports.RemoveAt(dgvRecords.CurrentRow.Index);
 
             InputItemUpdate();  //データグリッドビューを更新したら呼ぶメソッド
