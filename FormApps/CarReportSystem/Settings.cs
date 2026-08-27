@@ -23,7 +23,7 @@ namespace CarReportSystem {
 
         //設定ファイルからロード
         public void Load() {
-            if (! File.Exists(FileName))
+            if (!File.Exists(FileName))
                 return;
 
             using var reader = XmlReader.Create(FileName);
@@ -40,9 +40,8 @@ namespace CarReportSystem {
                 MainFormBackColor = MainFormBackColor
             };
             using var writer = XmlWriter.Create(FileName);
-            var seralizer = new XmlSerializer(typeof(SettingsData));
-            seralizer.Serialize(writer, data);
-
+            var serializer = new XmlSerializer(typeof(SettingsData));
+            serializer.Serialize(writer, data);
         }
     }
 
