@@ -31,9 +31,6 @@ namespace CarReportSystem {
                 MessageBox.Show(ex.Message);
             }
 
-
-            
-
             ////ファイルが存在するか？
             //if (File.Exists("setting.xml")) {
             //    try {
