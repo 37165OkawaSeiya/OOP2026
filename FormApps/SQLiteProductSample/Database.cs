@@ -21,7 +21,7 @@ public static class Database
     }
 
     //DBの初期化処理
-    public static void Initilize() {
+    public static void Initialize() {
         //接続オブジェクトを生成する。
         using var connection = GetConnection();
 
@@ -34,12 +34,13 @@ public static class Database
         //IF NOT EXISTS により、既にテーブルがあってもエラーにならない
         command.CommandText =
             """
-            CREATE TABLE NOT EXISTS Products(
-                Id      INTEGER PRIMARY KEY AUTOINCREMENT,
-                Name    TEXT NOT NULL,
-                Price   INTEGER NOT NULL CHECK (PRICE >= 0)
+            CREATE TABLE IF NOT EXISTS Products (
+                Id    INTEGER PRIMARY KEY AUTOINCREMENT,
+                Name  TEXT NOT NULL,
+                Price INTEGER NOT NULL CHECK (Price >= 0)
             );
             """;
+
 
         //結果業を返さないSQLを実行する
         command.ExecuteNonQuery();
