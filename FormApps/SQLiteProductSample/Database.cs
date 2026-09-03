@@ -3,8 +3,7 @@ using Microsoft.Data.Sqlite;
 namespace SQLiteProductSample;
 
 // SQLiteデータベースへの接続と初期化を担当するクラス
-public static class Database 
-{
+public static class Database {
     //DBファイルへの保存場所
     private static readonly string DatabasePath =
         Path.Combine(AppContext.BaseDirectory, "products.db");
@@ -41,9 +40,7 @@ public static class Database
             );
             """;
 
-
         //結果業を返さないSQLを実行する
         command.ExecuteNonQuery();
     }
-
 }
