@@ -437,19 +437,7 @@
             ファイルFToolStripMenuItem.Size = new Size(67, 20);
             ファイルFToolStripMenuItem.Text = "ファイル(&F)";
             // 
-            // 開くToolStripMenuItem
-            // 
-            開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-            開くToolStripMenuItem.Size = new Size(180, 22);
-            開くToolStripMenuItem.Text = "開く…";
-            開くToolStripMenuItem.Click += 開くToolStripMenuItem_Click;
-            // 
-            // 保存ToolStripMenuItem
-            // 
-            保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
-            保存ToolStripMenuItem.Size = new Size(180, 22);
-            保存ToolStripMenuItem.Text = "保存…";
-            保存ToolStripMenuItem.Click += 保存ToolStripMenuItem_Click;
+            
             // 
             // toolStripSeparator1
             // 

@@ -49,7 +49,7 @@ public class ProductRepository {
         return reports;
     }
 
-    public void Add(string name, int price) {
+    public void Add(CarReport carReport) {
         //接続オブジェクトを生成する
         using var connection = Database.GetConnection();
 
@@ -58,14 +58,19 @@ public class ProductRepository {
         using var command = connection.CreateCommand();
         command.CommandText =
             """
-            INSERT INTO Products (Name,Price)
-            VALUES ($name,$price);
+            INSERT INTO CarReports
+            (Date, Author, Maker, CarName, Report, Picture)
+            VALUES
+            ($date, $author, $maker, $carName, $report, $picture);
 
             SELECT last_insert_rowid();
             """;
-        command.Parameters.AddWithValue("$name", name);
-        command.Parameters.AddWithValue("$price", price);
-        command.ExecuteNonQuery();
+        command.Parameters.AddWithValue("$date", carReport.Date.ToString("yyyy-MM-dd"));
+        command.Parameters.AddWithValue("$author", carReport.Author);
+        command.Parameters.AddWithValue("$maker", (int)carReport.Maker);
+        command.Parameters.AddWithValue("$carName", carReport.CarName);
+        command.Parameters.AddWithValue("$report", carReport.Report ?? (object)DBNull.Value);
+        command.Parameters.AddWithValue("$picture", ImageToBytes(carReport.Picture));
     }
 
     public void Delete(int id) {
@@ -83,25 +88,28 @@ public class ProductRepository {
         command.ExecuteNonQuery();
     }
 
-    public void Update(CarReport product) {
+    public void Update(CarReport carReport) {
         using var connection = Database.GetConnection();
         connection.Open();
 
         using var command = connection.CreateCommand();
         command.CommandText =
             """
-            UPDATE Products
-            SET Name = $name,
-                Price = $price
+            UPDATE CarReports
+            SET Date = $date, Author = $author, Maker = $maker,
+                CarName = $carName, Report = $report, Picture = $picture
             WHERE Id = $id;
             """;
 
-        command.Parameters.AddWithValue("$name", product.Name);
-        command.Parameters.AddWithValue("$price", product.Price);
-        command.Parameters.AddWithValue("$id", product.Id);
+        command.Parameters.AddWithValue("$date", carReport.Date.ToString("yyyy-MM-dd"));
+        command.Parameters.AddWithValue("$author", carReport.Author);
+        command.Parameters.AddWithValue("$maker", (int)carReport.Maker);
+        command.Parameters.AddWithValue("$carName", carReport.CarName);
+        command.Parameters.AddWithValue("$report", carReport.Report ?? (object)DBNull.Value);
+        command.Parameters.AddWithValue("$picture", ImageToBytes(carReport.Picture));
+        command.Parameters.AddWithValue("$id", carReport.Id);
 
         command.ExecuteNonQuery();
-
 
     }
 
