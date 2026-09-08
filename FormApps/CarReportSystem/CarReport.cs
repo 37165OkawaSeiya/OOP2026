@@ -11,6 +11,8 @@
             輸入車,
             その他,
         }
+        [System.ComponentModel.DisplayName("Id")]
+        public int Id { get; set; }
         [System.ComponentModel.DisplayName("日付")]
         public DateTime Date { get; set; }//日付
         [System.ComponentModel.DisplayName("記録者")]

@@ -21,6 +21,7 @@ namespace CarReportSystem {
 
 
         private void Form1_Load(object sender, EventArgs e) {
+
             //”wŒiF‚ğİ’è‚·‚éj
             try {
                 Settings.Instance.Load();

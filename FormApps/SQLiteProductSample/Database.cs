@@ -40,7 +40,7 @@ public static class Database {
             );
             """;
 
-        //Œ‹‰Ê‹Æ‚ğ•Ô‚³‚È‚¢SQL‚ğÀs‚·‚é
+        //Œ‹‰Ês‚ğ•Ô‚³‚È‚¢SQL‚ğÀs‚·‚é
         command.ExecuteNonQuery();
     }
 }
