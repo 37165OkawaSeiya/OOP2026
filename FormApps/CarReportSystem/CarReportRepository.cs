@@ -10,7 +10,7 @@ namespace CarReportSystem;
 //Productsテーブルに対するDB操作をまとめたクラス
 //CRUD (Create / Read / Update / Delete) を担当する
 
-public class ProductRepository {
+public class CarReportRepository {
     public List<CarReport> GetAll() {
 
         var reports = new List<CarReport>();
@@ -24,7 +24,14 @@ public class ProductRepository {
         //IF NOT EXISTS により、既にテーブルがあってもエラーにならない
         command.CommandText =
             """
-            SELECT Id, Date, Author, Maker, CarName, Report, Picture
+            SELECT
+                Id, 
+                Date,
+                Author,
+                Maker,
+                CarName,
+                Report,
+                Picture
             FROM CarReports
             ORDER BY Id
             """;
@@ -49,7 +56,8 @@ public class ProductRepository {
         return reports;
     }
 
-    public void Add(CarReport carReport) {
+
+    public int Add(CarReport carReport) {
         //接続オブジェクトを生成する
         using var connection = Database.GetConnection();
 
@@ -65,28 +73,19 @@ public class ProductRepository {
 
             SELECT last_insert_rowid();
             """;
-        command.Parameters.AddWithValue("$date", carReport.Date.ToString("yyyy-MM-dd"));
-        command.Parameters.AddWithValue("$author", carReport.Author);
-        command.Parameters.AddWithValue("$maker", (int)carReport.Maker);
-        command.Parameters.AddWithValue("$carName", carReport.CarName);
-        command.Parameters.AddWithValue("$report", carReport.Report ?? (object)DBNull.Value);
-        command.Parameters.AddWithValue("$picture", ImageToBytes(carReport.Picture));
+        SetCommandParameters(carReport, command);
+
+        //一つの値を返すSQLを実行する
+        var result = command.ExecuteScalar();
+
+        if (result is null)
+            throw new InvalidOperationException("登録したレポートのIDを取得できませんでした。");
+
+        // SQLiteのINTEGERはlongとして変えるため、intへ変換する
+        return Convert.ToInt32((long)result);
     }
 
-    public void Delete(int id) {
-        using var connection = Database.GetConnection();
-        connection.Open();
 
-        using var command = connection.CreateCommand();
-        command.CommandText =
-        """
-        DELETE FROM Products
-        WHERE Id = $id;
-        """;
-
-        command.Parameters.AddWithValue("$id", id);
-        command.ExecuteNonQuery();
-    }
 
     public void Update(CarReport carReport) {
         using var connection = Database.GetConnection();
@@ -101,17 +100,46 @@ public class ProductRepository {
             WHERE Id = $id;
             """;
 
-        command.Parameters.AddWithValue("$date", carReport.Date.ToString("yyyy-MM-dd"));
-        command.Parameters.AddWithValue("$author", carReport.Author);
-        command.Parameters.AddWithValue("$maker", (int)carReport.Maker);
-        command.Parameters.AddWithValue("$carName", carReport.CarName);
-        command.Parameters.AddWithValue("$report", carReport.Report ?? (object)DBNull.Value);
-        command.Parameters.AddWithValue("$picture", ImageToBytes(carReport.Picture));
+        SetCommandParameters(carReport, command);
         command.Parameters.AddWithValue("$id", carReport.Id);
 
         command.ExecuteNonQuery();
-
     }
+
+    public void Delete(int id) {
+        using var connection = Database.GetConnection();
+        connection.Open();
+
+        using var command = connection.CreateCommand();
+        command.CommandText =
+        """
+        DELETE FROM CarReports
+        WHERE Id = $id;
+        """;
+
+        command.Parameters.AddWithValue("$id", id);
+        command.ExecuteNonQuery();
+    }
+
+
+    private static void SetCommandParameters(CarReport carReport, SqliteCommand command) {
+        command.Parameters.AddWithValue("$date", carReport.Date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+        command.Parameters.AddWithValue("$author", carReport.Author);
+        command.Parameters.AddWithValue("$maker", carReport.Maker);
+        command.Parameters.AddWithValue("$carName", carReport.CarName);
+        command.Parameters.AddWithValue("$report", carReport.Report);
+
+        // Image型の画像を、SQLiteへ保存できるbyte配列に変換する
+        byte[]? pictureData = ImageToBytes(carReport.Picture);
+        // $picture パラメータをBLOB型として追加する
+        var pictureParameter = command.Parameters.Add($"picture", SqliteType.Blob);
+        if (pictureData is not null) {
+            pictureParameter.Value = pictureData;
+        } else {
+            pictureParameter.Value = DBNull.Value;
+        }
+    }
+
 
     // ImageをSQLiteへ保存できるbyte[]へ変換する
     private static byte[]? ImageToBytes(Image? image) {

@@ -1,5 +1,5 @@
 ﻿namespace CarReportSystem {
-    [Serializable]
+    //[Serializable]
     public class CarReport {
         //列挙型
         public enum MakerGroup {

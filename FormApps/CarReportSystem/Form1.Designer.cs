@@ -58,6 +58,7 @@
             menuStrip1 = new MenuStrip();
             ファイルFToolStripMenuItem = new ToolStripMenuItem();
             開くToolStripMenuItem = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripMenuItem();
             保存ToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             色設定ToolStripMenuItem = new ToolStripMenuItem();
@@ -70,6 +71,7 @@
             cdColor = new ColorDialog();
             sfdReportFileSave = new SaveFileDialog();
             ofdReportFileOpen = new OpenFileDialog();
+            このアプリについてToolStripMenuItem = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRecords).BeginInit();
@@ -437,34 +439,51 @@
             ファイルFToolStripMenuItem.Size = new Size(67, 20);
             ファイルFToolStripMenuItem.Text = "ファイル(&F)";
             // 
-            
+            // 開くToolStripMenuItem
+            // 
+            開くToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem1 });
+            開くToolStripMenuItem.Name = "開くToolStripMenuItem";
+            開くToolStripMenuItem.Size = new Size(119, 22);
+            開くToolStripMenuItem.Text = "開く...";
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(67, 22);
+            // 
+            // 保存ToolStripMenuItem
+            // 
+            保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
+            保存ToolStripMenuItem.Size = new Size(119, 22);
+            保存ToolStripMenuItem.Text = "保存...";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(177, 6);
+            toolStripSeparator1.Size = new Size(116, 6);
             // 
             // 色設定ToolStripMenuItem
             // 
             色設定ToolStripMenuItem.Name = "色設定ToolStripMenuItem";
-            色設定ToolStripMenuItem.Size = new Size(180, 22);
+            色設定ToolStripMenuItem.Size = new Size(119, 22);
             色設定ToolStripMenuItem.Text = "色設定…";
             色設定ToolStripMenuItem.Click += 色設定ToolStripMenuItem_Click_1;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(177, 6);
+            toolStripSeparator2.Size = new Size(116, 6);
             // 
             // 終了XToolStripMenuItem
             // 
             終了XToolStripMenuItem.Name = "終了XToolStripMenuItem";
-            終了XToolStripMenuItem.Size = new Size(180, 22);
+            終了XToolStripMenuItem.Size = new Size(119, 22);
             終了XToolStripMenuItem.Text = "終了(&X)";
             終了XToolStripMenuItem.Click += 終了XToolStripMenuItem_Click_1;
             // 
             // ヘルプHToolStripMenuItem
             // 
+            ヘルプHToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { このアプリについてToolStripMenuItem });
             ヘルプHToolStripMenuItem.Name = "ヘルプHToolStripMenuItem";
             ヘルプHToolStripMenuItem.Size = new Size(65, 20);
             ヘルプHToolStripMenuItem.Text = "ヘルプ(&H)";
@@ -492,6 +511,13 @@
             // ofdReportFileOpen
             // 
             ofdReportFileOpen.FileName = "openFileDialog1";
+            // 
+            // このアプリについてToolStripMenuItem
+            // 
+            このアプリについてToolStripMenuItem.Name = "このアプリについてToolStripMenuItem";
+            このアプリについてToolStripMenuItem.Size = new Size(180, 22);
+            このアプリについてToolStripMenuItem.Text = "このアプリについて...";
+            このアプリについてToolStripMenuItem.Click += このアプリについてToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -592,5 +618,7 @@
         private ColorDialog cdColor;
         private SaveFileDialog sfdReportFileSave;
         private OpenFileDialog ofdReportFileOpen;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem このアプリについてToolStripMenuItem;
     }
 }
