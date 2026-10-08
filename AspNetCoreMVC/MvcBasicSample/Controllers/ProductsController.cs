@@ -17,7 +17,6 @@ public class ProductsController : Controller{
 
         //Idの昇順で取得した結果をList<Product>にする
         var products = await _db.Products
-            //.Where(product => product.Price >= 500)
             .OrderBy(product => product.Price)
             .ToListAsync();
 
