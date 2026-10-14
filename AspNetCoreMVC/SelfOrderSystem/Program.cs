@@ -6,14 +6,22 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//’Ç‰Á
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
-
+// ’Ç‰Á
+builder.Services.AddDbContext<AppDbContext>(
+        options =>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+    );
+/////////
 
 var app = builder.Build();
 
+// ’Ç‰Á
+if (app.Environment.IsDevelopment()) {
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await SeedData.InitializeAsync(db);
+}
+/////////
+///
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment()) {
     app.UseExceptionHandler("/Home/Error");
