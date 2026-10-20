@@ -43,8 +43,6 @@ namespace Exercise01_WPF {
                     }
                 }
             }
-            
-
             return sb.ToString();
         }
     }

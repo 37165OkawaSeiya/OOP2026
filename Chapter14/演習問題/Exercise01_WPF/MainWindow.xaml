@@ -7,23 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <!-- 行の定義（上がボタン用、下がTextBox用） -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <!-- 1行目: ボタンの高さに合わせる -->
             <RowDefinition Height="*"/>
-            <!-- 2行目: 残りの画面領域をすべて占有する -->
+            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
 
-        <!-- 1行目（Row 0）: ボタン -->
-        <Button Grid.Row="0" Content="ファイル選択" Click="Button_Click" Height="30"/>
-
-        <!-- 2行目（Row 1）: TextBox（高さ指定を解除し、スクロール可能にする） -->
-        <TextBox Grid.Row="1" 
-                 x:Name="TextArea" 
-                 TextWrapping="Wrap" 
-                 AcceptsReturn="True"
-                 VerticalScrollBarVisibility="Auto"
-                 HorizontalScrollBarVisibility="Auto"/>
+        <Button Grid.Row="0" Grid.Column="0" Content="ファイル選択" Click="Button_Click"/>
+        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="TextArea" TextWrapping="Wrap" Height="400" VerticalScrollBarVisibility="Auto"/>
     </Grid>
 </Window>
