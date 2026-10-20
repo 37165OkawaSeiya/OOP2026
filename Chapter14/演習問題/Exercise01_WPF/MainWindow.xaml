@@ -1,0 +1,29 @@
+﻿<Window x:Class="Exercise01_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Exercise01_WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <!-- 行の定義（上がボタン用、下がTextBox用） -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- 1行目: ボタンの高さに合わせる -->
+            <RowDefinition Height="*"/>
+            <!-- 2行目: 残りの画面領域をすべて占有する -->
+        </Grid.RowDefinitions>
+
+        <!-- 1行目（Row 0）: ボタン -->
+        <Button Grid.Row="0" Content="ファイル選択" Click="Button_Click" Height="30"/>
+
+        <!-- 2行目（Row 1）: TextBox（高さ指定を解除し、スクロール可能にする） -->
+        <TextBox Grid.Row="1" 
+                 x:Name="TextArea" 
+                 TextWrapping="Wrap" 
+                 AcceptsReturn="True"
+                 VerticalScrollBarVisibility="Auto"
+                 HorizontalScrollBarVisibility="Auto"/>
+    </Grid>
+</Window>
