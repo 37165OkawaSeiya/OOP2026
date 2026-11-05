@@ -1,22 +1,158 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+/* AIデザイン演習用の追加スタイル */
+:root {
+    --brand-color: #395c47;
+    --page-bg: #f7f6f1;
+}
+
+body {
+    background: var(--page-bg);
+}
+
+h1, h2 {
+    color: var(--brand-color);
+}
+
+.btn-success {
+    background-color: var(--brand-color);
+    border-color: var(--brand-color);
+}
+
+    .btn-success:hover {
+        background-color: #2b4535;
+        border-color: #2b4535;
+    }
+
+/* ----------------------------------
+   昆虫・自然テーマ メニューオーダー用拡張スタイル
+   ---------------------------------- */
+
+:root {
+    --bug-accent: #d4a373; /* 樹液・琥珀イメージのアクセント */
+    --bug-highlight: #889e81; /* 新緑・葉っぱの明るいグリーン */
+    --bug-dark: #1b2e23; /* 深い森・昆虫の甲殻イメージ */
+    --card-bg: #ffffff;
+    --card-border: #e2e0d8;
+}
+
+/* ヘッダー・店舗ロゴエリア */
+.navbar {
+    background-color: var(--brand-color) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand, .nav-link {
+    color: #ffffff !important;
+}
+
+/* メニューカテゴリ選択（ピルタグスタイル） */
+.category-pill {
+    background-color: #e8e6dc;
+    color: var(--bug-dark);
+    border-radius: 20px;
+    padding: 8px 18px;
+    margin-right: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+    .category-pill.active, .category-pill:hover {
+        background-color: var(--brand-color);
+        color: #ffffff;
+    }
+
+/* メニューカード UI */
+.menu-card {
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    background-color: var(--card-bg);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: 100%;
+}
+
+    .menu-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(57, 92, 71, 0.15);
+    }
+
+    .menu-card .card-img-top {
+        height: 180px;
+        object-fit: cover;
+        border-bottom: 1px solid var(--card-border);
+    }
+
+    .menu-card .card-title {
+        font-weight: 700;
+        color: var(--bug-dark);
+        font-size: 1.1rem;
+    }
+
+    .menu-card .price-tag {
+        color: var(--brand-color);
+        font-size: 1.25rem;
+        font-weight: 800;
+    }
+
+/* 注文カート・固定ボトムバー（スマホ・タブレット向け） */
+.order-summary-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-top: 2px solid var(--brand-color);
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1030;
+    padding: 12px 20px;
+}
+
+/* 数量カウントボタン (+/-) */
+.btn-qty {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    line-height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--brand-color);
+    color: var(--brand-color);
+    background-color: #ffffff;
+    font-weight: bold;
+}
+
+    .btn-qty:hover {
+        background-color: var(--brand-color);
+        color: #ffffff;
+    }
+
+/* バッジ（おすすめ・限定など） */
+.badge-nature {
+    background-color: var(--bug-accent);
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 12px;
+    padding: 4px 10px;
 }
