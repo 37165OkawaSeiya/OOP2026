@@ -20,9 +20,9 @@
     <script src="~/js/signalr/dist/browser/signalr.min.js"></script> 
     <script> 
         const orderConnection = new signalR.HubConnectionBuilder() 
-            .withUrl("/staffOrdersHub") 
-            .withAutomaticReconnect() 
-            .build(); 
+                                    .withUrl("/staffOrdersHub") 
+                                    .withAutomaticReconnect() 
+                                    .build(); 
   
         // 現在表示している注文のグループに参加する 
         const publicId = "@Model.PublicId"; 
@@ -30,9 +30,9 @@
             orderConnection.invoke("JoinOrder", publicId); 
   
         // 店員による状態変更を受けたら再読込する 
-        orderConnection.on("OrderStatusChanged", () => { 
-            window.location.reload(); 
-        }); 
+            orderConnection.on("OrderStatusChanged", () => { 
+                window.location.reload(); 
+            }); 
   
         // 切断から復旧したらグループへ入り直す 
         orderConnection.onreconnected(async () => { 
