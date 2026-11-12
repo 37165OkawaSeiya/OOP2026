@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SelfOrderSystem.Data;
 using SelfOrderSystem.Services;
+using SelfOrderSystem.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,7 @@ builder.Services.AddScoped<CartService>(); // CartService‚ğDI‚Ö“o˜^‚µController‚
 /////////
 
 builder.Services.AddScoped<IOrderService, OrderService>(); //ƒT[ƒrƒX‘w‚ğì¬‚µ‚½‚±‚Æ‚É‚æ‚é’Ç‰Á
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -59,5 +61,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapHub<StaffOrdersHub>("/staffOrdersHub");
 
 app.Run();
