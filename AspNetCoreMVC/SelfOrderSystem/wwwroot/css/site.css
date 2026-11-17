@@ -37,3 +37,11 @@ body {
     color: #666;
     font-size: 0.95rem;
 } 
+
+/* PCではカートをスクロールに追従させる */
+@media (min-width: 992px) {
+    .so-cart-sidebar {
+        position: sticky;
+        top: 90px;
+    }
+}
