@@ -83,8 +83,8 @@ public class OrderService : IOrderService   // IOrderServiceで定義した処�
         await _db.SaveChangesAsync();      // SQL Serverの保存完了を待つ 
         result.PublicId = order.PublicId; // 保存に成功したID 
         try {
-            // 店舗画面へ更新の合図を送る 
-            await _hubContext.Clients.All.SendAsync("OrdersChanged");
+            await _hubContext.Clients.Group("staff")
+            .SendAsync("OrdersChanged");
         }
         catch (Exception ex) {
             // 通知失敗でも保存済みの注文は成功として扱う 

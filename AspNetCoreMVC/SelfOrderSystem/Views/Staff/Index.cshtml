@@ -11,7 +11,7 @@
     int servedCount = Model.Count(o => o.Status == OrderStatus.Served);
 }
 
-<link rel="stylesheet" href="~/css//staff.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/css/staff.css" asp-append-version="true" />
 
 <div class="staff-page">
 
@@ -54,8 +54,12 @@
 
             @foreach (var order in Model) {
                 // 注文全体の合計金額
-                var total = order.Items.Sum(
-                i => i.UnitPrice * i.Quantity);
+                var total = order.Items.Sum(i => i.UnitPrice * i.Quantity);
+
+                // 注文日時を日本時間へ変換
+                var japanTime = TimeZoneInfo.ConvertTime(
+                                        order.OrderedAtUtc,
+                                        TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time"));
 
                 <article class="staff-order-card">
 
@@ -72,20 +76,21 @@
                                     注文 #@order.Id
                                 </div>
 
+
                                 <time class="staff-order-time">
-                                    @order.OrderedAtUtc.ToLocalTime()
-                                    .ToString("yyyy/MM/dd HH:mm")
+                                    @japanTime.ToString("yyyy/MM/dd HH:mm")
                                 </time>
+
                             </div>
                         </div>
 
                         @* 現在の注文状態 *@
                         <span class="staff-status
-                                    @(order.Status == OrderStatus.Served
-                                                              ? "staff-status-served"
-                                                              : order.Status == OrderStatus.Cooking
-                                                                  ? "staff-status-cooking"
-                                                                  : "staff-status-new")">
+                                            @(order.Status == OrderStatus.Served
+                                                                ? "staff-status-served"
+                                                                : order.Status == OrderStatus.Cooking
+                                                                    ? "staff-status-cooking"
+                                                                    : "staff-status-new")">
                     @order.Status.ToJapanese()
                 </span>
             </div>
@@ -148,23 +153,26 @@
 </div>
 
 @section Scripts {
-    @* LibMan で追加したSignalRのJavaScript *@ 
+    @* LibMan で追加したSignalR のJavaScript *@
     <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
     <script>
-
-        // Hubとの接続を作る
+        // Hub との接続を作る
         const staffConnection = new signalR.HubConnectionBuilder()
-        .withUrl("/staffOrdersHub")
-        .withAutomaticReconnect()
-        .build();
+                                                .withUrl("/staffOrdersHub")
+                                                .withAutomaticReconnect()
+                                                .build();
         // 通知を受けたら最新の注文一覧を読み直す
         staffConnection.on("OrdersChanged", () => {
-        window.location.reload();
+            window.location.reload();
         });
         // 再接続後も表示内容を更新する
-        staffConnection.onreconnected(() => window.location.reload());
-        staffConnection.start().catch(error => {
-        console.error("店舗 SignalR 接続エラー", error);
+        staffConnection.onreconnected(async () => {
+            await staffConnection.invoke("JoinStaff");
+            window.location.reload();
         });
+
+        staffConnection.start()
+            .then(() => staffConnection.invoke("JoinStaff"))
+            .catch(error => console.error("店舗SignalR 接続エラー", error));
     </script>
 }
